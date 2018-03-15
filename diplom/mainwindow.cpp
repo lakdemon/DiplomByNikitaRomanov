@@ -28,7 +28,7 @@ MainWindow::MainWindow(QWidget *parent) :
     view->resizeColumnsToContents();
     view->resizeRowsToContents();
     view->setModel(model);
-    view->horizontalHeader()->setStretchLastSection(true);
+    //view->horizontalHeader()->setStretchLastSection(true);
 
 
 }

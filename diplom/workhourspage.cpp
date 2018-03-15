@@ -12,7 +12,7 @@
 #include <QBoxLayout>
 #include <QLineEdit>
 #include <QSqlQueryModel>
-#include <QHeaderView>
+//#include <QHeaderView>
 #include <QDebug>
 #include <QSqlError>
 #include <QtCore>
@@ -36,13 +36,14 @@ WorkhoursPage::WorkhoursPage(QWidget *parent) :
     view->setModel(model);
     //view->resizeColumnsToContents();
     //view->resizeRowsToContents();
+    /*
     view->horizontalHeader()->setDefaultAlignment(Qt::AlignCenter);
     view->horizontalHeader()->setSectionResizeMode(0,QHeaderView::Stretch);
     view->horizontalHeader()->setSectionResizeMode(1,QHeaderView::Stretch);
     view->horizontalHeader()->setSectionResizeMode(2,QHeaderView::Stretch);
     view->horizontalHeader()->setSectionResizeMode(3,QHeaderView::Stretch);
     view->horizontalHeader()->setSectionResizeMode(4,QHeaderView::Stretch);
-
+*/
 
     addRecordLabel   = new QLabel;
     addRecordLabel->setText("Add new record");
