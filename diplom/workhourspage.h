@@ -40,6 +40,7 @@ public:
     QLineEdit   *Arrival_Time;
     QLineEdit   *Departure_Time;
     QLineEdit   *Date;
+    QSqlDatabase db;
 
 public slots:
    void AddRecordSLOT();

@@ -20,6 +20,7 @@ int main(int argc, char *argv[])
     //window.view->resizeColumnsToContents();
     //window.view->resizeRowsToContents();
 
+        /*
     QTabWidget tabber;
 
     QLabel inProgress1;
@@ -32,7 +33,8 @@ int main(int argc, char *argv[])
     tabber.addTab(&inProgress1,"Positions");
     tabber.addTab(&inProgress2,"Employee");
     tabber.show();
-
+*/
+    page1.show();
 
     return a.exec();
 }

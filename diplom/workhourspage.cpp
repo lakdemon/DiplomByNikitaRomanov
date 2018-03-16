@@ -21,13 +21,15 @@ WorkhoursPage::WorkhoursPage(QWidget *parent) :
     QWidget(parent)
 {
 
-    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+    db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName("db_name.sqlite");
-    db.open();
+    if(!db.open())
+        qDebug() << db.lastError().text();
 
-    QSqlQuery* selectfromworkhours = new QSqlQuery(db);
+    QSqlQuery* selectfromworkhours = new QSqlQuery();
     selectfromworkhours->prepare("SELECT workhours.work_Date AS DATE, employee.full_Name AS NAME, stavka.dolznost AS POSITION, workhours.arrival_Time AS ARRIVAL, workhours.departure_Time AS DEPARTURE FROM workhours JOIN employee ON workhours.id_employee == employee.id JOIN stavka ON workhours.id_dolznost == stavka.id");
-    selectfromworkhours->exec();
+    if(!selectfromworkhours->exec())
+        qDebug() << selectfromworkhours->lastError().text();
 
     QSqlQueryModel *model = new QSqlQueryModel();
     model->setQuery(*selectfromworkhours);
@@ -52,10 +54,12 @@ WorkhoursPage::WorkhoursPage(QWidget *parent) :
 
 
     QSqlQuery allEmployeeQuery;
-    allEmployeeQuery.exec("SELECT full_Name FROM employee");
+    if(!allEmployeeQuery.exec("SELECT full_Name FROM employee"))
+        qDebug() << allEmployeeQuery.lastError().text();
 
     QSqlQuery allPositionsQuery;
-    allPositionsQuery.exec("SELECT dolznost FROM stavka");
+    if(allPositionsQuery.exec("SELECT dolznost FROM stavka"))
+        qDebug() << allPositionsQuery.exec();
 
 
     Position_Choice      = new QComboBox;
@@ -120,6 +124,7 @@ WorkhoursPage::~WorkhoursPage()
     delete Arrival_Time;
     delete Departure_Time;
     delete Date;
+    db.close();
 
 }
 
